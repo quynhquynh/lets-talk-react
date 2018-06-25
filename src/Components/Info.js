@@ -72,6 +72,7 @@ class Info extends React.Component{
         let touched = [...this.state.touched]
         touched[field] = true
         this.setState({touched})
+        //this.setState(prevState => ({...prevState.touched, name: true}))
     }
 
 
