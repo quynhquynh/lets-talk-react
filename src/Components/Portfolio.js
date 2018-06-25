@@ -27,7 +27,7 @@ class Portfolio extends React.Component{
     }
 
     handleClick = () => {
-        this.props.history.push('/skills')
+        this.props.history.push('/lets-talk-react/skills')
     }
 
     handleSave = () => {

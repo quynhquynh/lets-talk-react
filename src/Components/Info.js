@@ -69,10 +69,10 @@ class Info extends React.Component{
 
     handleBlur = (e, field) => {
         console.log(`${field} is touched`)
-        let touched = [...this.state.touched]
-        touched[field] = true
-        this.setState({touched})
-        //this.setState(prevState => ({...prevState.touched, name: true}))
+        // let touched = [...this.state.touched]
+        // touched[field] = true
+        // this.setState({touched})
+        this.setState(prevState => ({touched: {...prevState.touched, [field]: true}}))
     }
 
 
