@@ -44,7 +44,7 @@ class Info extends React.Component{
     }
 
     handleClick = action => {
-        this.props.history.push(action === 'next' ? '/skills' : '/')
+        this.props.history.push(action === 'next' ? '/lets-talk-react/skills' : '/lets-talk-react')
     }
 
     validate = (name, email, verified, phone, city, country) => {

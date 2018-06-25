@@ -42,7 +42,7 @@ class Skills extends React.Component{
     
 
     handleClick = action => {
-        this.props.history.push(action === 'next' ? '/portfolio' : '/info')
+        this.props.history.push(action === 'next' ? '/lets-talk-react/portfolio' : '/lets-talk-react/info')
     }
 
     handleSubmit = (e, action) => {
