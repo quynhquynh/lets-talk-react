@@ -15,6 +15,11 @@ class Portfolio extends React.Component{
         }
     }
 
+    componentDidMount(){
+        const data = this.props.currentData
+        Object.values(data).length !== 0 && this.setState({portfolioElse: data})
+    }
+
     handleChange = (e, field) => {
         let portfolioElse = {...this.state.portFolioElse}
         portfolioElse[field] = e.target.value

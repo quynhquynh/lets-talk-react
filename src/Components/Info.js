@@ -30,6 +30,11 @@ class Info extends React.Component{
         }
     }
 
+    componentDidMount(){
+        const data = this.props.currentData
+        Object.values(data).length !== 0 && this.setState({info: data})
+    }
+
     handleChange = (e, field) => {
         //e.target.value.length < 5 && this.setState state not updated with more than 5 characters, using name not updated but still displayed in input field
         let info = {...this.state.info}
@@ -89,7 +94,6 @@ class Info extends React.Component{
             if(!this.state.touched[field]){
                 return true
             }else{
-                console.log(errors[field])
                 return errors[field] ? false : true
             }
         }
@@ -102,7 +106,7 @@ class Info extends React.Component{
                         {top_left.map((item, i) => <Input 
                                                         key ={i} 
                                                         name={item.name} 
-                                                        className={checkValid(item.name) ? 'valid' : 'invalid'}
+                                                        className={checkValid(item.name) ? 'valid' : 'invalid'} //className={errors[firstname] && touched.frstname ? 'invalid' : 'valid'}
                                                         onBlur={e => this.handleBlur(e, item.name)}
                                                         value={info[item.name]}
                                                         placeholder={item.placeholder} 

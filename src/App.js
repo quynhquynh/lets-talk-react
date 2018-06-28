@@ -30,6 +30,7 @@ class App extends React.Component{
             <div className="App">
                 <header className="App-header">
                     <nav>
+                        {/* <link to onClick={this.handleClick('info')} */}
                         <li><NavLink exact activeStyle={{color: 'pink'}} style={{color: 'white', textDecoration: 'none'}} to='/lets-talk-react/'>Home</NavLink></li>
                         <li><NavLink exact activeStyle={{color: 'pink'}} style={{color: 'white', textDecoration: 'none'}} to='/lets-talk-react/info'>Personal Information</NavLink></li>
                         <li><NavLink exact activeStyle={{color: 'pink'}} style={{color: 'white', textDecoration: 'none'}} to='/lets-talk-react/skills' >Skill and Location</NavLink></li>
@@ -39,9 +40,9 @@ class App extends React.Component{
                 <main>
                     <Switch>
                         <Route exact path='/lets-talk-react/' component={Home} />
-                        <Route exact path='/lets-talk-react/info' render={props => <Info section='info' personal={this.saveData} {...props} />} />
-                        <Route exact path='/lets-talk-react/skills' render={props => <Skills section='skills' skills={this.saveData} {...props} />} />
-                        <Route exact path='/lets-talk-react/portfolio' render={props => <Portfolio section='portfolio' portfolios={this.saveData} {...props} />} />
+                        <Route exact path='/lets-talk-react/info' render={props => <Info section='info' personal={this.saveData} currentData={this.state.info} {...props} />} />
+                        <Route exact path='/lets-talk-react/skills' render={props => <Skills section='skills' skills={this.saveData} currentData={this.state.skills} {...props} />} />
+                        <Route exact path='/lets-talk-react/portfolio' render={props => <Portfolio section='portfolio' portfolios={this.saveData} currentData={this.state.portfolio} {...props} />} />
                         <Redirect exact from='/' to='/lets-talk-react' />
                         <Route component = {NotFound} />
                     </Switch>

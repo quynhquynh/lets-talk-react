@@ -1,49 +1,23 @@
 import React from 'react'
 import Radio from './Radio'
 import Checkbox from './Checkbox'
+import isEmail from 'validator/lib/isEmail'
 
+
+// isEmail(email)
+
+//import validator from 'validator'
+
+// validator.isEmail(email)
 
 class Skills extends React.Component{
     constructor(props){
         super(props)
         this.state = {
             discipline: '',
-            experience: {
-                visual1: false,
-                ux1: false,
-                front1: false
-            },
-            place: {
-                texas: false,
-                ca: false,
-                china: false,                            
-                ireland: false,
-                uk: false, 
-                germany: false,
-                else: false
-            }
+            experience: [],
+            place: []
         }
-    }
-
-    componentDidMount(){
-        const data = this.props.currentData
-        data.length !== 0 && this.setState(prevState =>{
-            let experience = {...prevState.experience}
-            let place = {...prevState.place}
-            let experience_data = data[1].experience
-            let place_data = data[2].place
-            for(let item of experience_data){
-                experience[item] = true
-            }
-            for(let item of place_data){
-                place[item] = true
-            }
-            return ({
-                discipline: data[0].discipline,
-                experience,
-                place
-            })
-        })  
     }
 
     handleRadio = (e, type) => {
@@ -52,13 +26,10 @@ class Skills extends React.Component{
         })
     }
 
-    handleCheck = (e, type, checkbox) => {
-        this.setState(prevState => {
-            let experience = {...prevState.experience}
-            let place = {...prevState.place}
-            type === 'experience' ? experience[checkbox] = !experience[checkbox] : place[checkbox] = !place[checkbox]
-            return type === 'experience' ? ({experience}) : ({place})
-        })
+    handleCheck = e => {
+        const value = e.target.value
+        // const experience = [...this.state.experience] use when use splice, splice doesnt return new array, only the deleted one
+        this.state.experience.indexOf(value) === -1 ? this.setState({push}) : this.setState({experience: [...prevState.exprerience.slice(0, i), ...prevState.experience.slice(i+1)]) //splice mutate arr
     }
     
 
@@ -133,8 +104,8 @@ class Skills extends React.Component{
                                                             name={item.name}
                                                             id={item.id}
                                                             label={item.label}
-                                                            checked={experience[item.id]}
-                                                            onChange={e => this.handleCheck(e, item.name, item.id)} />)}
+                                                            checked={this.state.experience.includes(item.name)}
+                                                            onChange={this.handleCheck} />)}
                         </ul>
                         {errors.experience && <p>*Please choose at least one</p>}
                     </div>
@@ -148,7 +119,6 @@ class Skills extends React.Component{
                                                         name={item.name}
                                                         label={item.label}
                                                         id={item.id}
-                                                        checked={place[item.id]}
                                                         onChange={e => this.handleCheck(e, item.name, item.id)} />)}
                         </ul>
                         {errors.place && <p>*Please choose at least one</p>}
